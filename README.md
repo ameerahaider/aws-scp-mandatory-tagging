@@ -286,4 +286,4 @@ To enforce tagging on all EC2 actions:
 
 ---
 
-For more details on managing AWS resources and enforcing tagging policies, check out this [Medium article]([https://medium.com/@ameerahaiderrizvi/aws-service-control-policy-scp-enforcing-mandatory-tagging-on-resource-creation-b85eae2fb602]).
+For more details on managing AWS resources and enforcing tagging policies, check out this [Medium article](https://medium.com/@ameerahaiderrizvi/aws-service-control-policy-scp-enforcing-mandatory-tagging-on-resource-creation-b85eae2fb602).
