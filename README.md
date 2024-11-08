@@ -48,64 +48,160 @@ The policy denies the creation of the above resources if the required `Environme
 
 ```json
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "DenyUnTaggedVPC",
-      "Effect": "Deny",
-      "Action": ["ec2:CreateVpc"],
-      "Resource": ["arn:aws:ec2:*:*:vpc/*"],
-      "Condition": {
-        "Null": {
-          "aws:RequestTag/Environment": "true"
-        }
-      }
-    },
-    {
-      "Sid": "DenyUnTaggedSubnet",
-      "Effect": "Deny",
-      "Action": ["ec2:CreateSubnet"],
-      "Resource": ["arn:aws:ec2:*:*:subnet/*"],
-      "Condition": {
-        "Null": {
-          "aws:RequestTag/Environment": "true"
-        }
-      }
-    },
-    {
-      "Sid": "DenyUnTaggedRouteTable",
-      "Effect": "Deny",
-      "Action": ["ec2:CreateRouteTable"],
-      "Resource": ["arn:aws:ec2:*:*:route-table/*"],
-      "Condition": {
-        "Null": {
-          "aws:RequestTag/Environment": "true"
-        }
-      }
-    },
-    {
-      "Sid": "DenyUnTaggedLoadBalancers",
-      "Effect": "Deny",
-      "Action": ["elasticloadbalancing:CreateLoadBalancer"],
-      "Resource": ["arn:aws:elasticloadbalancing:*:*:loadbalancer/*"],
-      "Condition": {
-        "Null": {
-          "aws:RequestTag/Environment": "true"
-        }
-      }
-    },
-    {
-      "Sid": "DenyUnTaggedS3",
-      "Effect": "Deny",
-      "Action": ["s3:CreateBucket"],
-      "Resource": ["arn:aws:s3:::*"],
-      "Condition": {
-        "Null": {
-          "aws:RequestTag/Environment": "true"
-        }
-      }
-    }
-  ]
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "DenyUnTaggedVPC",
+			"Effect": "Deny",
+			"Action": [
+				"ec2:CreateVpc"
+			],
+			"Resource": [
+				"arn:aws:ec2:*:*:vpc/*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/Environment": "true"
+				}
+			}
+		},
+		{
+			"Sid": "DenyUnTaggedSubnet",
+			"Effect": "Deny",
+			"Action": [
+				"ec2:CreateSubnet"
+			],
+			"Resource": [
+				"arn:aws:ec2:*:*:subnet/*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/Environment": "true"
+				}
+			}
+		},
+		{
+			"Sid": "DenyUnTaggedRouteTable",
+			"Effect": "Deny",
+			"Action": [
+				"ec2:CreateRouteTable"
+			],
+			"Resource": [
+				"arn:aws:ec2:*:*:route-table/*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/Environment": "true"
+				}
+			}
+		},
+		{
+			"Sid": "DenyUnTaggedInternetGateway",
+			"Effect": "Deny",
+			"Action": [
+				"ec2:CreateInternetGateway"
+			],
+			"Resource": [
+				"arn:aws:ec2:*:*:internet-gateway/*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/Environment": "true"
+				}
+			}
+		},
+		{
+			"Sid": "DenyUnTaggedNatGateway",
+			"Effect": "Deny",
+			"Action": [
+				"ec2:CreateNatGateway"
+			],
+			"Resource": [
+				"arn:aws:ec2:*:*:natgateway/*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/Environment": "true"
+				}
+			}
+		},
+		{
+			"Sid": "DenyUnTaggedSecurityGroup",
+			"Effect": "Deny",
+			"Action": [
+				"ec2:CreateSecurityGroup"
+			],
+			"Resource": [
+				"arn:aws:ec2:*:*:security-group/*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/Environment": "true"
+				}
+			}
+		},
+		{
+			"Sid": "DenyUnTaggedLoadBalancers",
+			"Effect": "Deny",
+			"Action": [
+				"elasticloadbalancing:CreateLoadBalancer"
+			],
+			"Resource": [
+				"arn:aws:elasticloadbalancing:*:*:loadbalancer/*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/Environment": "true"
+				}
+			}
+		},
+		{
+			"Sid": "DenyUnTaggedTargetGroups",
+			"Effect": "Deny",
+			"Action": [
+				"elasticloadbalancing:CreateTargetGroup"
+			],
+			"Resource": [
+				"arn:aws:elasticloadbalancing:*:*:targetgroup/*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/Environment": "true"
+				}
+			}
+		},
+		{
+			"Sid": "DenyUnTaggedEC2",
+			"Effect": "Deny",
+			"Action": [
+				"ec2:RunInstances"
+			],
+			"Resource": [
+				"arn:aws:ec2:*:*:instance/*",
+				"arn:aws:ec2:*:*:volume/*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/Environment": "true"
+				}
+			}
+		},
+		{
+			"Sid": "DenyUnTaggedS3",
+			"Effect": "Deny",
+			"Action": [
+				"s3:CreateBucket"
+			],
+			"Resource": [
+				"arn:aws:s3:::*"
+			],
+			"Condition": {
+				"Null": {
+					"aws:RequestTag/Environment": "true"
+				}
+			}
+		}
+	]
 }
 ```
 
@@ -189,3 +285,5 @@ To enforce tagging on all EC2 actions:
 - **Automation**: Facilitates automation workflows by using tags as filters.
 
 ---
+
+For more details on managing AWS resources and enforcing tagging policies, check out this [Medium article]([https://link-to-medium-article.com](https://medium.com/@ameerahaiderrizvi/aws-service-control-policy-scp-enforcing-mandatory-tagging-on-resource-creation-b85eae2fb602)).
